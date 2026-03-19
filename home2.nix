@@ -1,17 +1,9 @@
 { config, pkgs, pkgsunstable, ... }:
 {
   # Benutzerinfos
-  home.username = "vm";
-  home.homeDirectory = "/home/vm";
+  home.username = "vm2";
+  home.homeDirectory = "/home/vm2";
   home.stateVersion = "25.11";
-  
-#  home.file."bin/hello".text = ''
- # #!/usr/bin/env bash
- # echo "Hello $USER from NixOS (via Home Manager)"
- # '';
-
- # home.file."bin/hello".executable = true;
-  
 
   # Shells
   programs.bash = {
@@ -29,7 +21,6 @@
   programs.fish.enable = true;
 
   home.packages = [
-    (import ./hello.nix { inherit pkgs; })
     pkgs.librewolf
     pkgsunstable.neovim 
   ];

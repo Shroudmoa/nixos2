@@ -75,21 +75,36 @@
     #  thunderbird
     ];
   };
-
-  programs.firefox.enable = true;
-
+ 
+  users.users.vm2 = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+    shell = pkgs.bash; # oder zsh später
+  };
+  
   environment.systemPackages = with pkgs; [
   bat
   xclip
   git
   fastfetch
+  cloud-ddns
+  icinga2
+  icinga2-agent
+  icingaweb2
+  monitoring-plugins  
   ] ++ [
   pkgsunstable.firefox
   pkgsunstable.kitty
   pkgsunstable.wezterm
   pkgsunstable.ttyd
   ];
+  
+  programs.firefox.enable = true;
+  nixpkgs.config.packageOverrides = pkgs: {
+    cloud-ddns = pkgs.callPackage ./ucandelete.nix { };
+  };
+
   services.openssh.enable = true;
-system.stateVersion = "25.11"; # Did you read the comment? No
+  system.stateVersion = "25.11"; # Did you read the comment? No
 
 }

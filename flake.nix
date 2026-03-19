@@ -37,9 +37,14 @@
               };
             };
 
-            users.vm = import ./home.nix;
+            users = {
+              vm = import ./home.nix;
+              vm2 = import ./home2.nix; 
+            };
+#            users.vm = import ./home.nix;
             backupFileExtension = "backup";
           };
+
 #          home-manager = {
  #           useGlobalPkgs = true;
   #          useUserPackages = true;
